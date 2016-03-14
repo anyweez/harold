@@ -11,6 +11,7 @@ MessageLog.prototype.add = function (who, what) {
         id: this.nextId++,
         user: who,
         message: what,
+        when: new Date().toISOString(),
     });
 };
 
