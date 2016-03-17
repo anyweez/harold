@@ -26,7 +26,7 @@ server.connection({
 
 server.register(inert, function () {});
 
-var messages = messagelog.new();
+var messages = messagelog.new(1000);
 messages.add('luke', 'guess whoooooo');
 
 /**
@@ -36,6 +36,7 @@ server.route({
     method: 'get',
     path: '/messages',
     handler: function (request, reply) {
+        console.log(new Date().toISOString() + '\tGET /messages');
         // Create the options config object.
         var options = {};
         if (request.query.start) options.start = request.query.start;
@@ -60,6 +61,7 @@ server.route({
         var content = JSON.parse(request.payload);
         // Create a new message.
         messages.add(content.name, content.message);
+        console.log(new Date().toISOString() + '\tPOST /messages [' + content.message + ']');
         return reply();
     },
     config: {

@@ -1,12 +1,18 @@
 /* jslint node: true */
-function MessageLog() {
+function MessageLog(max) {
     this.messages = [];
     this.nextId = 0;
+    this.maxMessages = max;
 
     return this;
 }
 
 MessageLog.prototype.add = function (who, what) {
+    // Only hold up to this.maxMessages messages
+    if (this.messages.length > this.maxMessages) {
+        this.messages.shift();
+    }
+
     this.messages.push({
         id: this.nextId++,
         user: who,
@@ -28,8 +34,8 @@ MessageLog.prototype.fetch = function (options) {
 
 module.exports = (function () {
     return {
-        new: function () {
-            return new MessageLog();
+        new: function (max) {
+            return new MessageLog(max);
         },
     };
 }());
