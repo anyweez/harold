@@ -4,7 +4,7 @@ const joi = require('joi');
 const messagelog = require('./messagelog');
 
 const host = 'localhost';
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 // Open a connection
 const server = new hapi.Server();
