@@ -1,0 +1,19 @@
+body {
+    background-color: #faf0e6;
+}
+
+main {
+    border: 2px solid black;
+    margin: 1em;
+    background-color: white;
+}
+
+ul {
+    padding: 0;
+    margin: 1em;
+}
+
+li {
+    list-style-type: none;
+    margin: 1em 0;
+}
