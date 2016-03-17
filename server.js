@@ -34,6 +34,9 @@ server.route({
                 start: joi.number().integer(),
             },
         },
+        cors: {
+            origin: ['*'],
+        },
     },
 });
 
@@ -41,16 +44,20 @@ server.route({
     method: 'post',
     path: '/messages',
     handler: function (request, reply) {
+	var content = JSON.parse(request.payload);
         // Create a new message.
-        messages.add(request.payload.name, request.payload.message);
+        messages.add(content.name, content.message);
         return reply();
     },
     config: {
-        validate: {
-            payload: {
-                name: joi.string().required().min(3),
-                message: joi.string().required().min(1),
-            },
+//        validate: {
+//            payload: {
+//                name: joi.string().required().min(3),
+//                message: joi.string().required().min(1),
+//            },
+//        },
+        cors: {
+            origin: ['*'],
         },
     },
 });
