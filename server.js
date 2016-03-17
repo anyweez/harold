@@ -3,7 +3,7 @@ const hapi = require('hapi');
 const joi = require('joi');
 const messagelog = require('./messagelog');
 
-const host = 'localhost';
+const host = '0.0.0.0';
 const port = process.env.PORT || 8000;
 
 // Open a connection
