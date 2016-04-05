@@ -1,7 +1,6 @@
 /* jslint node: true, esnext: true */
 const path = require('path');
 const hapi = require('hapi');
-const joi = require('joi');
 const inert = require('inert');
 const messagelog = require('./messagelog');
 
@@ -26,57 +25,28 @@ server.connection({
 
 server.register(inert, function () {});
 
-var messages = messagelog.new(1000);
-messages.add('luke', 'guess whoooooo');
+// 
+var routes = [
+    require('./routes/get-messages'),
+    require('./routes/post-messages'),
+    require('./routes/get-stocks'),
+    require('./routes/get-trinkets'),
+];
+
+var shared_state = {
+    messages: messagelog.new(1000),
+};
+// Put an initial message in there so the log is never empty.
+shared_state.messages.add('luke', 'guess whoooooo');
 
 /**
  * GET request that returns all messages.
  */
-server.route({
-    method: 'get',
-    path: '/messages',
-    handler: function (request, reply) {
-        console.log(new Date().toISOString() + '\tGET /messages');
-        // Create the options config object.
-        var options = {};
-        if (request.query.start) options.start = request.query.start;
-        return reply(JSON.stringify(messages.fetch(options)));
-    },
-    config: {
-        validate: {
-            query: {
-                start: joi.number().integer(),
-            },
-        },
-        cors: {
-            origin: ['*'],
-        },
-    },
+routes.forEach(function (route) {
+    server.route(route(shared_state));
 });
 
-server.route({
-    method: 'post',
-    path: '/messages',
-    handler: function (request, reply) {
-        var content = JSON.parse(request.payload);
-        // Create a new message.
-        messages.add(content.name, content.message);
-        console.log(new Date().toISOString() + '\tPOST /messages [' + content.message + ']');
-        return reply();
-    },
-    config: {
-        //        validate: {
-        //            payload: {
-        //                name: joi.string().required().min(3),
-        //                message: joi.string().required().min(1),
-        //            },
-        //        },
-        cors: {
-            origin: ['*'],
-        },
-    },
-});
-
+// Fallback route in case none of the other routes match.
 server.route({
     method: 'get',
     path: '/{param*}',

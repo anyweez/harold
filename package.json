@@ -25,9 +25,13 @@
     "gulp-jslint": "^0.2.2",
     "gulp-uglify": "^1.5.3",
     "hapi": "^13.2.1",
+    "hapi-passport": "0.0.6",
     "inert": "^3.2.0",
     "joi": "^8.0.4",
-    "path": "^0.12.7"
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10",
+    "path": "^0.12.7",
+    "request": "^2.69.0"
   },
   "devDependencies": {}
 }
