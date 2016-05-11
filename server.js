@@ -42,7 +42,7 @@ var routes = [
     require('./routes/get-messages'),
     require('./routes/post-messages'),
     require('./routes/get-trinkets'),
-//    require('./routes/get-exchange-rates'),
+    require('./routes/get-exchange-rates'),
     require('./routes/get-news-providers'),
     require('./routes/get-news-stories'),
 ];
