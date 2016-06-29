@@ -45,6 +45,8 @@ var routes = [
     require('./routes/get-exchange-rates'),
     require('./routes/get-news-providers'),
     require('./routes/get-news-stories'),
+    require('./routes/get-grid-player-config.js'),
+    require('./routes/get-grid-players-config.js'),
 ];
 
 var shared_state = {
