@@ -16,9 +16,7 @@ module.exports = function (state) {
             reply(configs);
         },
         config: {
-            cors: {
-                origin: ['*'],
-            },
+            cors: true,
         },
     };
 };

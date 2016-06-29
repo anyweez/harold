@@ -1,4 +1,6 @@
 /* jslint browser: true */
+'use strict'
+
 window.addEventListener('load', function () {
     var endpoint = '/messages';
 

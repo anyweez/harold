@@ -31,9 +31,7 @@ module.exports = function (state) {
             else reply(configs[0]);
         },
         config: {
-            cors: {
-                origin: ['*'],
-            },
+            cors: true,
         },
     };
 };
