@@ -6,6 +6,7 @@ const inert = require('inert');
 const websocket = require('hapi-plugin-websocket');
 const messagelog = require('./messagelog');
 const news = require('./news');
+const highscores = require('./highscores');
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 7000;
@@ -47,14 +48,18 @@ var routes = [
     require('./routes/get-news-stories'),
     require('./routes/get-grid-player-config.js'),
     require('./routes/get-grid-players-config.js'),
+    require('./routes/get-highscores.js'),
+    require('./routes/post-highscores.js'),
 ];
 
 var shared_state = {
     messages: messagelog.new(1000),
     news: news.new(),
+    highscores: highscores.new(),
 };
 // Put an initial message in there so the log is never empty.
 shared_state.messages.add('luke', 'guess whoooooo');
+shared_state.highscores.add({ name: 'Luke', score: 15, playerType: 'big' });
 
 /**
  * GET request that returns all messages.
