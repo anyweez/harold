@@ -15,7 +15,7 @@ module.exports = function (state) {
                 content.hasOwnProperty('playerType')) {
 
                 state.highscores.add(content);
-                reply();
+                reply(content);
             } else {
                 reply(Boom.badRequest('Must provide a name, score, and playerType'));
             }
