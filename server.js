@@ -10,6 +10,11 @@ const colors = require('colors');
 const host = '0.0.0.0';
 const port = process.env.PORT || 7000;
 
+const codes = {
+    warning: [404],
+    error: [500],
+};
+
 // Open a connection
 const server = new hapi.Server({
     connections: {
@@ -28,9 +33,25 @@ server.connection({
 
 server.register(inert, function () { });
 
-function logEvent(method, route, message) {
+server.on('response', function (request) {
+    logEvent({
+        method: request.method,
+        route: request.url.path, 
+        message: '',
+        code: request.response.statusCode,
+    });
+});
+
+function logEvent({ method, route, message = undefined, code = '---' }) {
     let when = new Date().toISOString();
-    console.log(`${colors.gray(when)}\t${colors.green(method)}\t${colors.gray(route)}\t${message}`);
+    let where = `${code}\t${method.toUpperCase()}\t${route}`;
+
+    let whereColor = colors.green;
+    
+    if (codes.warning.indexOf(code) !== -1) whereColor = colors.yellow;
+    if (codes.error.indexOf(code) !== -1) whereColor = colors.red;
+
+    console.log(`${colors.gray(when)}\t${whereColor(where)}\t${message}`);
 }
 
 /**
@@ -72,17 +93,22 @@ fs.readdir('./state').then(contents => {
                     method: method,
                     path: path,
                     handler(request, reply) {
-                        logEvent(method, path, 'request');
+                        // logEvent(method, path, 'request');
                         mod.handler(request, reply, state);
                     },
                     config: {
+                        description: 'example method',
                         cors: {
                             origin: ['*'],
                         },
                     },
                 });
 
-                logEvent(method, path, 'initialized');
+                logEvent({
+                    method: method, 
+                    route: path, 
+                    message: 'initialized'
+                });
             });
         });
 
