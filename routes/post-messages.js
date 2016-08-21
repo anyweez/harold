@@ -6,7 +6,7 @@ module.exports = function (state) {
         handler: function (request, reply) {
             var content = JSON.parse(request.payload);
             // Create a new message.
-            state.messages.add(content.name, content.message);
+            state.messages.add(content.user, content.message);
             console.log(new Date().toISOString() + '\tPOST /messages [' + content.message + ']');
             return reply();
         },
