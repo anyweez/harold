@@ -15,7 +15,8 @@ const codes = {
     error: [500],
 };
 
-const methods = ['get', 'post', 'put', 'delete'];
+//const methods = ['get', 'post', 'put', 'delete'];
+const methods = ['get', 'post'];
 
 module.exports = function ({ host, port }) {
     // Open a connection
