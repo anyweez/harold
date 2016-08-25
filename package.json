@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/anyweez/harold/issues"
   },
+  "engines": {
+    "node": ">=6.4.0"
+  },
   "homepage": "https://github.com/anyweez/harold#readme",
   "dependencies": {
     "colors": "^1.1.2",
