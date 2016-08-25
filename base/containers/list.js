@@ -22,3 +22,11 @@ InMemoryList.prototype.remove = function (id) {
 InMemoryList.prototype.getAll = function () {
     return this.list;
 };
+
+InMemoryList.prototype.get = function (index) {
+    return this.list[index];
+}
+
+InMemoryList.prototype.count = function () {
+    return this.list.length;
+}
