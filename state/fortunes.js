@@ -44,6 +44,16 @@ function FortuneLottery() {
     }
     console.log(`${count} from celebrity`);
 
+    count = 0;
+    for (let params of divisible.generator()) {
+        let solution = divisible.solve(...params);
+        if (valid(solution)) {
+            this.add(String.fromCharCode(solution), { operation: 'divisible', inputs: params });
+            count++;
+        }
+    }
+    console.log(`${count} from divisible`);
+
     /** Check to make sure every character is represented */
     for (let i = MIN_CHARCODE; i <= MAX_CHARCODE; i++) {
         if (this.count(String.fromCharCode(i)) === 0) throw Error('Lottery doesnt contain character ' + String.fromCharCode(i));
@@ -77,9 +87,9 @@ let celebrity = {
                 let birth = random(this.START_YEAR, this.END_YEAR);
                 let death = random(birth + 25, birth + 100);
 
-                people.push({ 
-                    birth: birth, 
-                    death: death 
+                people.push({
+                    birth: birth,
+                    death: death
                 });
             }
 
@@ -107,7 +117,7 @@ let celebrity = {
     },
 };
 
-// https://www.reddit.com/r/dailyprogrammer/comments/4dccix/20160404_challenge_261_easy_verifying_3x3_magic/
+// https://www.reddit.com/r/dailyprogrammer/comments/4uhqdb/20160725_challenge_277_easy_simplifying_fractions/
 let fractions = {
     generator: function* () {
         for (let i = random(0, 100); i < 1000; i += random(1, 200)) {
@@ -190,3 +200,32 @@ let longx = {
         return largest;
     },
 };
+
+let divisible = {
+    generator: function* () {
+        for (let c = 0; c < 10000; c++) {
+            let fullCount = random(5, 15);
+            let divisCount = random(2, 4);
+
+            let full = [];
+            for (let i = 0; i < fullCount; i++) full.push(random(1, 200));
+
+            let divisPotential = [2, 3, 4, 5, 6, 7, 8, 9, 11, 14];
+            let divis = new Set();
+            for (let i = 0; i < divisCount; i++) {
+                divis.add(divisPotential[random(0, divisPotential.length)]);
+            }
+
+            yield [full, Array.from(divis)];
+        }
+    },
+
+    solve(full, divis) {
+        return full.filter(num => {
+            for (let i = 0; i < divis.length; i++) {
+                if (num % divis[i] !== 0) return false;
+            }
+            return true;
+        }).reduce((full, next) => full + next, 0);
+    }
+}
