@@ -6,13 +6,20 @@ module.exports = InMemoryList;
 function InMemoryList() {
     this.nextId = 0;
     this.list = [];
+    this.exists = new Set();
 
     return this;
 }
 
-InMemoryList.prototype.add = function (item) {
-    item.id = this.nextId++;
-    this.list.push(item);
+InMemoryList.prototype.add = function (item, unique = true) {
+    if (!unique || !this.exists.has(JSON.stringify(item))) {
+        this.exists.add(JSON.stringify(item));
+
+        item.id = this.nextId++;
+        this.list.push(item);
+    } else {
+        this.exists.add(JSON.stringify(item));
+    }
 };
 
 InMemoryList.prototype.remove = function (id) {

@@ -13,6 +13,7 @@ const Boom = require('boom');
  */
 module.exports = {
     handler(request, reply, state) {
+        request.payload = JSON.parse(request.payload);
         if (!request.payload.from) reply(Boom.badRequest('Must specify a user name'));
         else if (!request.payload.message) reply(Boom.badRequest('Must specify a message'));
         else {

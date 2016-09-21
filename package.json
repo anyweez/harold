@@ -22,11 +22,13 @@
   "homepage": "https://github.com/anyweez/harold#readme",
   "dependencies": {
     "colors": "^1.1.2",
+    "feed-read": "0.0.1",
     "hapi": "^13.2.1",
     "inert": "^3.2.1",
     "joi": "^8.0.4",
     "mz": "^2.4.0",
     "path": "^0.12.7",
+    "request-promise": "^4.1.1",
     "vision": "^4.1.0"
   },
   "apidoc": {
