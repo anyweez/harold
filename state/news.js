@@ -62,7 +62,13 @@ function ArticleList() {
                         if (err) return console.error('Error fetching stories: ' + err);
 
                         articles.reverse().forEach(article => {
-                            this.add(new Article(article));
+                            let current = new Article(article);
+                            current.publisher = {
+                                name: publisher.name,
+                                logo: publisher.logo,
+                            };
+
+                            this.add(current);
                         });
                     });
                 } catch (e) {
@@ -74,11 +80,11 @@ function ArticleList() {
 }
 
 function Article(settings) {
-    // this.id = nextAId++;
     this.title = settings.title || 'unknown';
     this.published = settings.published || null;
     this.link = settings.link || '';
-    // this.providerId = settings.providerId || null;
+    this.publisher = null;
+    this.summary = settings.content || 'Unknown';
 
     return this;
 }
