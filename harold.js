@@ -46,6 +46,14 @@ module.exports = function ({ host, port }) {
         });
     });
 
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: function (request, reply) {
+            reply.redirect('https://gist.github.com/anyweez/396f74d6e0e2cbd64939a73ed37b3bf4');
+        },
+    });
+
     function logEvent({ method, route, message = undefined, code = '---' }) {
         let when = new Date().toISOString();
         let where = `${code}\t${method.toUpperCase()}\t${route}`;
