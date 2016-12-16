@@ -16,7 +16,7 @@ const codes = {
 };
 
 //const methods = ['get', 'post', 'put', 'delete'];
-const methods = ['get', 'post'];
+const methods = ['get', 'post', 'delete'];
 
 module.exports = function ({ host, port }) {
     // Open a connection
