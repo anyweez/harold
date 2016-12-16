@@ -13,12 +13,14 @@ const Boom = require('boom');
  */
 module.exports = {
     handler(request, reply, state) {
-        if (!request.payload.from) reply(Boom.badRequest('Must specify a user name'));
-        else if (!request.payload.message) reply(Boom.badRequest('Must specify a message'));
+        const payload = JSON.parse(request.payload);
+
+        if (!payload.from) reply(Boom.badRequest('Must specify a user name'));
+        else if (!payload.message) reply(Boom.badRequest('Must specify a message'));
         else {
             state.chatlog.add({
-                from: request.payload.from,
-                message: request.payload.message,
+                from: payload.from,
+                message: payload.message,
             });
 
             reply({

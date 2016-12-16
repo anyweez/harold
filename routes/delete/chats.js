@@ -12,9 +12,11 @@ const Boom = require('boom');
  */
 module.exports = {
     handler(request, reply, state) {
-        if (!request.payload || Object.keys(request.payload).length === 0) reply(Boom.badRequest('Must specify at least one property'));
+        const payload = JSON.parse(request.payload);
 
-        state.chatlog.remove(request.payload);
+        if (!payload || Object.keys(payload).length === 0) reply(Boom.badRequest('Must specify at least one property'));
+
+        state.chatlog.remove(payload);
         reply();
     }
 };
