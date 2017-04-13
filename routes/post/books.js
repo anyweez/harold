@@ -20,6 +20,8 @@ module.exports = {
             state.books.add({
                 title: request.payload.title,
                 author: request.payload.author,
+                price: request.payload.price || 1.99,
+                cover: request.payload.hasOwnProperty('cover') ? request.payload.cover : null,
             });
 
             reply({
