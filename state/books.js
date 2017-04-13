@@ -11,6 +11,8 @@ function BookList() {
     this.add({ title: 'Amelia Bedelia Helps Out', author: 'Peggy Parish', price: 14.19, cover: 'http://www.scholastic.com/content5/media/products/18/9780688802318_xlg.jpg' });
     this.add({ title: 'The Lion, the Witch, and the Wardrobe', author: 'CS Lewis', price: 12.89, cover: 'https://images-na.ssl-images-amazon.com/images/I/51sQcUYpM9L._SX307_BO1,204,203,200_.jpg' });
     this.add({ title: 'Peter Pan', author: 'J. M. Barrie', price: 21.99, cover: 'https://writerchickanu.files.wordpress.com/2012/12/peter-pan-cover.jpg' });
+    this.add({ title: 'Harry Potter and the Prisoner of Azkaban', author: 'J. K. Rowling', price: 14.49, cover: 'https://images-na.ssl-images-amazon.com/images/I/51mlcUMYR2L._SX324_BO1,204,203,200_.jpg' });
+    this.add({ title: 'The Curse of the Mummy\'s Tomb', author: 'R. L. Stine', price: 3.81, cover: 'http://vignette2.wikia.nocookie.net/goosebumps/images/4/4f/The_Curse_of_the_Mummy%27s_Tomb_%28Cover%29.jpg/revision/latest?cb=20161024015635' });
 
     return this;
 }
