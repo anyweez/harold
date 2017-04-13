@@ -7,9 +7,6 @@ const hapi = require('hapi');
 const inert = require('inert');
 const colors = require('colors');
 
-// const host = '0.0.0.0';
-// const port = process.env.PORT || 7000;
-
 const codes = {
     warning: [404],
     error: [500],

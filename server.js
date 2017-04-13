@@ -1,4 +1,5 @@
 'use strict'
+
 let process = require('process');
 let harold = require('./harold');
 
