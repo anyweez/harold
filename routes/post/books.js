@@ -13,8 +13,8 @@ const Boom = require('boom');
  */
 module.exports = {
     handler(request, reply, state) {
-        console.log(request.payload);
-        // request.payload = JSON.parse(request.payload);
+        // console.log(request.payload);
+        request.payload = JSON.parse(request.payload);
         if (!request.payload.title) reply(Boom.badRequest('Must specify a book title'));
         else if (!request.payload.author) reply(Boom.badRequest('Must specify an author'));
         else {
