@@ -1,4 +1,4 @@
-let next_food_id = 0;
+let next_food_id = 1;
 
 function Food(name, description, price) {
     this.id = next_food_id++;
@@ -31,6 +31,10 @@ Restaurant.prototype.add_to = function (table_id, item) {
 
     this.orders[table_id].push(this.get_item(item));
 };
+
+Restaurant.prototype.get_bill = function (table_id) {
+    return this.orders[table_id];
+}
 
 /* Does order already exist? */
 Restaurant.prototype.exists = function (table_id) {
