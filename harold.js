@@ -96,7 +96,7 @@ module.exports = function ({ host, port }) {
                 directories.filter(name => name.endsWith('.js')).forEach(filename => {
                     let mod = require(`${basedir}${filename}`);
                     // TODO: customizable path should be defined in module
-                    let path = `/${filename.slice(0, -3)}`;
+                    let path = mod.path || `/${filename.slice(0, -3)}`;
 
                     server.route({
                         method: method,
