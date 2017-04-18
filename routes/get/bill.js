@@ -13,6 +13,7 @@ module.exports = {
             reply({
                 table_id: table,
                 items: state.restaurant.get_bill(table),
+                in_progress: state.restaurant.order_active[table],
             });            
         } else {
             reply(Boom.badRequest('You must specify a valid table_id.'));

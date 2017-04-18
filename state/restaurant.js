@@ -12,6 +12,8 @@ function Food(name, description, price) {
 
 function Restaurant() {
     this.orders = {};
+    this.order_active = {};
+
     this.items = [
         new Food('Caesar Salad', 'An extraordinary mix of lettuce and croutons.', 8.99),
         new Food('Pickled Asparagus', 'A local favorite; just what it sounds like.', 11.39),
@@ -27,6 +29,7 @@ function Restaurant() {
 Restaurant.prototype.add_to = function (table_id, item) {
     if (!this.exists(table_id)) {
         this.orders[table_id] = [];
+        this.order_active[table_id] = true;
     }
 
     this.orders[table_id].push(this.get_item(item));
@@ -44,6 +47,10 @@ Restaurant.prototype.exists = function (table_id) {
 /* Check to see if the specified item exists; return if so */
 Restaurant.prototype.get_item = function (id) {
     return this.items.find(i => i.id === id);
+};
+
+Restaurant.prototype.complete = function (table_id) {
+    this.order_active[table_id] = false;
 };
 
 module.exports = Restaurant;
