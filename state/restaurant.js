@@ -18,6 +18,11 @@ function Restaurant() {
         new Food('Caesar Salad', 'An extraordinary mix of lettuce and croutons.', 8.99),
         new Food('Pickled Asparagus', 'A local favorite; just what it sounds like.', 11.39),
         new Food('Carrot Smoothie', 'Fresh from the garden.', 4.19),
+        new Food('Crepe a la Mode', 'Ice cream for the French inside all of us.', 8.49),
+        new Food('Boiled Broccoli', 'The green nightmare of every childhood.', 4.19),
+        new Food('Cheddar Cheese', 'The classic. Available with or without crackers.', 2.99),
+        new Food('Brownie Pie', 'A delicious pie made soley of brownies.', 4.19),
+        new Food('Corn', 'Pretty standard stuff.', 1.59),
     ];
 
     this.items[2].available = false;
