@@ -2,7 +2,9 @@ const Boom = require('boom');
 
 module.exports = {
     handler(request, reply, state) {
-        const payload = JSON.parse(request.payload);
+        const payload = typeof(request.payload) === 'string' ?
+            JSON.parse(request.payload) :
+            request.payload;
 
         if (!payload.table_id) reply(Boom.badRequest('Must specify a table ID'));
         else if (!payload.menu_id) reply(Boom.badRequest('Must specify a menu ID'));
